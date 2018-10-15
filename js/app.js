@@ -14,13 +14,26 @@ function getHourlyCustomers(minCust, maxCust) {
   return Math.floor(Math.random() * (maxCust - minCust)) + minCust;
 }
 
-pike.render = function () {
+pike.getCookieCount = function () {
   for (var i = 0; i < hours.length; i++) {
     pike.hourlyCookieCount.push(Math.ceil(getHourlyCustomers(pike.minCust, pike.maxCust) * pike.avgCookies));
   }
 }
 
+pike.render = function () {
+  var pikeUl = document.getElementById('pike');
+  for (var i = 0; i < this.hourlyCookieCount.length; i++) {
+    console.log(this.hourlyCookieCount[i]);
+    //1. create an <li> element
+    var liEl = document.createElement('li');
+    //2. give that <li> element content
+    liEl.textContent = `${hours[i]}: ${this.hourlyCookieCount[i]} cookies`;
+    //3. appent the <li> to the <ul>
+    pikeUl.appendChild(liEl);
+  }
+}
 
+pike.getCookieCount()
 pike.render()
 console.log(pike)
 
