@@ -186,10 +186,48 @@ capitolHill.getTotalCookies();
 capitolHill.render();
 console.log(capitolHill);
 
-// var alki = {
-//   name: 'Alki',
-//   minCust: 2,
-//   maxCust: 16,
-//   avgCookies: 4.6
+var alki = {
+  name: 'Alki',
+  minCust: 2,
+  maxCust: 16,
+  avgCookies: 4.6,
+  hourlyCookieCount: [],
+  totalCookies: 0
+};
 
-// }
+alki.getHourlyCustomers = function () {
+  return Math.floor(Math.random() * (alki.maxCust - alki.minCust)) + alki.minCust;
+}
+
+alki.getCookieCount = function () {
+  for (var i = 0; i < hours.length; i++) {
+    alki.hourlyCookieCount.push(Math.ceil(alki.getHourlyCustomers(alki.minCust, alki.maxCust) * alki.avgCookies));
+  }
+}
+
+alki.getTotalCookies = function () {
+  for (var i = 0; i < alki.hourlyCookieCount.length; i++){
+    alki.totalCookies += alki.hourlyCookieCount[i];
+    console.log(alki.totalCookies);
+  }
+  return alki.totalCookies;
+}
+
+alki.render = function () {
+  var alkiUl = document.getElementById('alki');
+  for (var i = 0; i <this.hourlyCookieCount.length; i++) {
+    // console.log(this.hourlyCookieCount[i]);
+    var liEl = document.createElement('li');
+    liEl.textContent = `${hours[i]}: ${this.hourlyCookieCount[i]} cookies`;
+    alkiUl.appendChild(liEl);
+  }
+  liEl = document.createElement('li');
+  liEl.textContent = `Total Cookies: ${alki.totalCookies}`;
+  alkiUl.appendChild(liEl);
+}
+
+alki.getCookieCount();
+alki.getTotalCookies();
+alki.render();
+console.log(alki);
+
