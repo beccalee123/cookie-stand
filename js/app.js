@@ -67,7 +67,6 @@ seaTac.getHourlyCustomers = function () {
 seaTac.getCookieCount = function () {
   for (var i = 0; i < hours.length; i++) {
     seaTac.hourlyCookieCount.push(Math.ceil(seaTac.getHourlyCustomers(seaTac.minCust, seaTac.maxCust) * seaTac.avgCookies));
-    
   }
 }
 
@@ -97,13 +96,50 @@ seaTac.getTotalCookies();
 seaTac.render();
 console.log(seaTac);
 
-// var seattleCenter = {
-//   name: 'Seattle Center',
-//   minCust: 11,
-//   maxCust: 38,
-//   avgCookies: 3.7
+var seattleCenter = {
+  name: 'Seattle Center',
+  minCust: 11,
+  maxCust: 38,
+  avgCookies: 3.7,
+  hourlyCookieCount: [],
+  totalCookies: 0
+};
 
-// };
+seattleCenter.getHourlyCustomers = function () {
+  return Math.floor(Math.random() * (seattleCenter.maxCust - seattleCenter.minCust)) + seattleCenter.minCust;
+}
+
+seattleCenter.getCookieCount = function () {
+  for (var i = 0; i < hours.length; i++) {
+    seattleCenter.hourlyCookieCount.push(Math.ceil(seattleCenter.getHourlyCustomers(seattleCenter.minCust, seattleCenter.maxCust) * seattleCenter.avgCookies));
+  }
+}
+
+seattleCenter.getTotalCookies = function () {
+  for (var i = 0; i < seattleCenter.hourlyCookieCount.length; i++){
+    seattleCenter.totalCookies += seattleCenter.hourlyCookieCount[i];
+    console.log(seattleCenter.totalCookies);
+  }
+  return seattleCenter.totalCookies;
+}
+
+seattleCenter.render = function () {
+  var seattleCenterUl = document.getElementById('seattlecenter');
+  for (var i = 0; i <this.hourlyCookieCount.length; i++) {
+    // console.log(this.hourlyCookieCount[i]);
+    var liEl = document.createElement('li');
+    liEl.textContent = `${hours[i]}: ${this.hourlyCookieCount[i]} cookies`;
+    seattleCenterUl.appendChild(liEl);
+  }
+  liEl = document.createElement('li');
+  liEl.textContent = `Total Cookies: ${seattleCenter.totalCookies}`;
+  seattleCenterUl.appendChild(liEl);
+}
+
+seattleCenter.getCookieCount();
+seattleCenter.getTotalCookies();
+seattleCenter.render();
+console.log(seattleCenter);
 
 // var capitolHill = {
 //   name: 'Capitol Hill',
