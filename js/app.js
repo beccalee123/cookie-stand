@@ -69,6 +69,7 @@ Store.prototype.render = function () {
     trEl.appendChild(tdEl);
   }
 
+  tdEl = document.createElement('td');
   tdEl.textContent = this.totalCookies;
   trEl.appendChild(tdEl);
 
@@ -85,6 +86,9 @@ function makeHeaderRow(){
     thEl.textContent = hours[i];
     trEl.appendChild(thEl);
   }
+  thEl = document.createElement('th');
+  thEl.textContent = 'Total Cookies';
+  trEl.appendChild(thEl);
 
   cookieTable.appendChild(trEl);
 }
