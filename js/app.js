@@ -56,6 +56,11 @@ Store.prototype.render = function () {
   //make a tr
   var trEl = document.createElement('tr');
 
+  //if using our new element function... the following code would be updaed to look like this:
+  //newElement('td', 'name', trEl)
+  //will need to declare the tdEl variable
+  //we would NOT do this for the tr because it's already fairly simple. Creating a tr function would overcomplicate things. We wouldn't want to do this unless we were creating a project with a TON of tables.
+
   //make a td
   var tdEl = document.createElement('td');
   //give it name content
@@ -102,39 +107,10 @@ function renderAllStores() {
 makeHeaderRow();
 renderAllStores();
 
-// seaTac.getHourlyCustomers = function () {
-//   return Math.floor(Math.random() * (seaTac.maxCust - seaTac.minCust)) + seaTac.minCust;
-
+//this code can be used to simplify and make code more dry
+// function newElement(type, content, parent){
+//   var element = document.createElement(type);
+//   element.textContent = content;
+//   parent.appendChild(element);
 // }
 
-// seaTac.getCookieCount = function () {
-//   for (var i = 0; i < hours.length; i++) {
-//     seaTac.hourlyCookieCount.push(Math.ceil(seaTac.getHourlyCustomers(seaTac.minCust, seaTac.maxCust) * seaTac.avgCookies));
-//   }
-// }
-
-// seaTac.getTotalCookies = function () {
-//   for (var i = 0; i < seaTac.hourlyCookieCount.length; i++){
-//     seaTac.totalCookies += seaTac.hourlyCookieCount[i];
-//     console.log(seaTac.totalCookies);
-//   }
-//   return seaTac.totalCookies;
-// }
-
-// seaTac.render = function () {
-//   var seaTacUl = document.getElementById('seatac');
-//   for (var i = 0; i <this.hourlyCookieCount.length; i++) {
-//     // console.log(this.hourlyCookieCount[i]);
-//     var liEl = document.createElement('li');
-//     liEl.textContent = `${hours[i]}: ${this.hourlyCookieCount[i]} cookies`;
-//     seaTacUl.appendChild(liEl);
-//   }
-//   liEl = document.createElement('li');
-//   liEl.textContent = `Total Cookies: ${seaTac.totalCookies}`;
-//   seaTacUl.appendChild(liEl);
-// }
-
-// seaTac.getCookieCount();
-// seaTac.getTotalCookies();
-// seaTac.render();
-// console.log(seaTac);
