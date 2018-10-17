@@ -19,7 +19,7 @@ function Store(name, minHourlyCustomers, maxHourlyCustomers, avgCookiesPerPerson
 
 //these are my store instances
 
-var pike = new Store('Pike Place', 23, 65, 6.3);
+var pike = new Store('1st and Pike', 23, 65, 6.3);
 var seaTac = new Store('SeaTac Airport', 3, 24, 1.2);
 var seattleCenter = new Store('Seattle Center', 11, 38, 3.7);
 var capitolHill = new Store('Capitol Hill', 20, 38, 2.3);
@@ -43,6 +43,60 @@ Store.prototype.getTotalCookies = function () {
     this.totalCookies += this.cookiesPerHour[i];
   }
 }
+
+var cookieTable = document.getElementById('store-table');
+
+Store.prototype.render = function () {
+  //call functions
+  this.getHourlyCustomers();
+  this.getHourlyCookies();
+  this.getTotalCookies();
+
+
+  //make a tr
+  var trEl = document.createElement('tr');
+
+  //make a td
+  var tdEl = document.createElement('td');
+  //give it name content
+  tdEl.textContent = this.name;
+  //append it to the tr
+  trEl.appendChild(tdEl);
+
+  for (var i = 0; i < hours.length; i++) {
+    tdEl = document.createElement('td');
+    tdEl.textContent = this.cookiesPerHour[i];
+    trEl.appendChild(tdEl);
+  }
+
+  tdEl.textContent = this.totalCookies;
+  trEl.appendChild(tdEl);
+
+  cookieTable.appendChild(trEl);
+}
+
+function makeHeaderRow(){
+  var trEl = document.createElement('tr');
+  var thEl = document.createElement('th');
+  thEl.textContent = '';
+  trEl.appendChild(thEl);
+  for (var i = 0; i < hours.length; i++){
+    var thEl = document.createElement('th');
+    thEl.textContent = hours[i];
+    trEl.appendChild(thEl);
+  }
+
+  cookieTable.appendChild(trEl);
+}
+
+function renderAllStores() {
+  for(var i = 0; i < allStores.length; i++) {
+    allStores[i].render();
+  }
+}
+
+makeHeaderRow();
+renderAllStores();
 
 // seaTac.getHourlyCustomers = function () {
 //   return Math.floor(Math.random() * (seaTac.maxCust - seaTac.minCust)) + seaTac.minCust;
