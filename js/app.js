@@ -50,7 +50,7 @@ Store.prototype.getTotalCookies = function () {
 var cookieTable = document.getElementById('store-table');
 
 //new element function
-function newElement(type, content, parent){
+function newElement(type, content, parent) {
   var element = document.createElement(type);
   element.textContent = content;
   parent.appendChild(element);
@@ -77,12 +77,12 @@ Store.prototype.render = function () {
 }
 
 //render header data
-function makeHeaderRow(){
+function makeHeaderRow() {
   var trEl = document.createElement('tr');
 
   newElement('th', '', trEl);
 
-  for (var i = 0; i < hours.length; i++){
+  for (var i = 0; i < hours.length; i++) {
     newElement('th', hours[i], trEl);
   }
 
@@ -93,7 +93,7 @@ function makeHeaderRow(){
 
 //render store
 function renderAllStores() {
-  for(var i = 0; i < allStores.length; i++) {
+  for (var i = 0; i < allStores.length; i++) {
     allStores[i].render();
   }
 }

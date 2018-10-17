@@ -7,8 +7,30 @@
     </head>
     <body>
         <h1>Pat's Salmon Cookies</h1>
-        <table id="store-table">
-        </table>
+
+        <form id="cookie-table-submission">
+            <fieldset>
+                <legend>Salmon Cookies Data Submission Form</legend>
+
+                <label for="name">Store Name: </label>
+                <input name="name" type="text" size="12" required />
+
+                <label for="minHourlyCustomers">Min. Hourly Customers: </label>
+                <input name="minHourlyCustomers" type="text" size="12" required />
+
+                <label for="maxHourlyCustomers">Max. Hourly Customers: </label>
+                <input name="minHourlyCustomers" type="text" size="12" required />
+
+                <label for="avgCookiesPerPerson">Avg. Cookies Per Person: </label>
+                <input name="minHourlyCustomers" type="text" size="12" required />
+
+                <button type="submit">Add to table!</button>
+
+            </fieldset>
+        </form>
+
+        <table id="store-table"></table>
+
         <script type="text/javascript" src="../js/app.js"></script>
     </body>
 </html>
