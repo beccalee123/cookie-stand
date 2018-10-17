@@ -102,3 +102,55 @@ function renderAllStores() {
 makeHeaderRow();
 renderAllStores();
 
+//creates global variable for DOM access
+var cookieTableSubmission = document.getElementById('cookie-table-form');
+
+// //Event listener for new location. This attaches it to my submission form
+// cookieTableSubmission.addEventListener('submit', handleFormSubmission);
+
+var handleFormSubmission = function(event){
+  //prevents page reload on submission
+  event.preventDefault();
+  //prevent empty fields
+  if (!event.target.name.value || !event.target.minHourlyCustomers.value || !event.target.maxHourlyCustomers.value || !event.target.avgCookiesPerPerson.value) {
+    return alert('Fields cannot be empty');
+  }
+  //populate the new stores with our variables
+  var location = event.target.name.value;
+  var min = event.target.minHourlyCustomers.value;
+  var max = event.target.maxHourlyCustomers.value;
+  var avgCookies = event.target.avgCookiesPerPerson.value;
+
+  //This is creating a new store instance
+  var newStoreLocation = new Store(location, min, max, avgCookies);
+
+  // This empties the form fields after the data has been grabbed
+  event.target.name.value = null;
+  event.target.minHourlyCustomers.value = null;
+  event.target.maxHourlyCustomers.value = null;
+  event.target.avgCookiesPerPerson.value = null;
+
+  //empties field forms so they aren't still filled when the table is populated
+  cookieTable.innerHTML = '';
+
+  //call header function
+  makeHeaderRow();
+
+  //call prototype functions and attach to new instance
+  newStoreLocation.getHourlyCustomers();
+
+  newStoreLocation.getHourlyCookies();
+
+  newStoreLocation.getTotalCookies();
+
+  //call main render function
+  renderAllStores();
+
+  //need to call footer here when I make it
+}
+
+//Event listener for new location. This attaches it to my submission form
+cookieTableSubmission.addEventListener('submit', handleFormSubmission);
+
+
+
