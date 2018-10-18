@@ -41,10 +41,22 @@ Store.prototype.getHourlyCookies = function () {
 
 //make a total cookies function
 Store.prototype.getTotalCookies = function () {
+  this.totalCookies = 0
   for (var i = 0; i < hours.length; i++) {
     this.totalCookies += this.cookiesPerHour[i];
   }
 }
+
+//call functions
+function renderAllCookies() {
+  for (var i = 0; i < allStores.length; i++) {
+    allStores[i].getHourlyCustomers();
+    allStores[i].getHourlyCookies();
+    allStores[i].getTotalCookies();
+  }
+}
+
+renderAllCookies();
 
 //Assign to HTML
 var cookieTable = document.getElementById('store-table');
@@ -58,10 +70,6 @@ function newElement(type, content, parent) {
 
 //render store data
 Store.prototype.render = function () {
-  //call functions
-  this.getHourlyCustomers();
-  this.getHourlyCookies();
-  this.getTotalCookies();
 
   var trEl = document.createElement('tr');
 
@@ -97,13 +105,6 @@ function renderAllStores() {
     allStores[i].render();
   }
 }
-
-//for loop with hours (no math here! Just need to send some initial total to zero)
-//contains a for loop with all stores array (this is where all the math will be. Will need to push to array)
-//that loop should also reference cookies/hour
-//somehow need to add cookies/hour
-//need an empty array that stores final total values in footer function
-//so that will be something like hourlyCookieTotals = 0
 
 //render footer data
 
