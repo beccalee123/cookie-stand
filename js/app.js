@@ -111,19 +111,28 @@ function makeFooterRow() {
 
   var trEl = document.createElement('tr');
 
-  newElement('tr', hourlyCookieTotals[i], trEl)
+  newElement('td', 'Cookies Per Hour', trEl);
+
+  var allCookies = 0;
 
   function totalCookiesCalculation() {
     var hourlyCookieTotals = [];
     for (var i = 0; i < hours.length; i++) {
       var totalForCalculationPurposes = 0;
       for (var j = 0; j < allStores.length; j++) {
-        totalForCalculationPurposes += allStores[j].cookiesPerHour[i]
+        totalForCalculationPurposes += allStores[j].cookiesPerHour[i];
       }
       hourlyCookieTotals.push(totalForCalculationPurposes);
+      newElement('td', hourlyCookieTotals[i], trEl);
+      console.log('calculation: ' + hourlyCookieTotals[i]);
+      allCookies += hourlyCookieTotals[i];
     }
   }
   totalCookiesCalculation();
+
+  //make another td that fills in the total of the total???
+  newElement('td', allCookies, trEl);
+
 
   cookieTable.appendChild(trEl);
 }
@@ -182,6 +191,7 @@ var handleFormSubmission = function (event) {
   renderAllStores();
 
   //need to call footer here when I make it
+  makeFooterRow();
 }
 
 //Event listener for new location. This attaches it to my submission form
