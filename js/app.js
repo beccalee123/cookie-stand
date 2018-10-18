@@ -98,28 +98,72 @@ function renderAllStores() {
   }
 }
 
+//for loop with hours (no math here! Just need to send some initial total to zero)
+//contains a for loop with all stores array (this is where all the math will be. Will need to push to array)
+//that loop should also reference cookies/hour
+//somehow need to add cookies/hour
+//need an empty array that stores final total values in footer function
+//so that will be something like hourlyCookieTotals = 0
+
+//render footer data
+
+function makeFooterRow() {
+
+  var trEl = document.createElement('tr');
+
+  newElement('td', 'Cookies Per Hour', trEl);
+
+  var allCookies = 0;
+
+  function totalCookiesCalculation() {
+    var hourlyCookieTotals = [];
+    for (var i = 0; i < hours.length; i++) {
+      var totalForCalculationPurposes = 0;
+      for (var j = 0; j < allStores.length; j++) {
+        totalForCalculationPurposes += allStores[j].cookiesPerHour[i];
+      }
+      hourlyCookieTotals.push(totalForCalculationPurposes);
+      newElement('td', hourlyCookieTotals[i], trEl);
+      console.log('calculation: ' + hourlyCookieTotals[i]);
+      allCookies += hourlyCookieTotals[i];
+    }
+  }
+  totalCookiesCalculation();
+
+  //make another td that fills in the total of the total???
+  newElement('td', allCookies, trEl);
+
+
+  cookieTable.appendChild(trEl);
+}
+
 //call functions
 makeHeaderRow();
 renderAllStores();
+makeFooterRow();
 
 //creates global variable for DOM access
 var cookieTableSubmission = document.getElementById('cookie-table-form');
 
-// //Event listener for new location. This attaches it to my submission form
-// cookieTableSubmission.addEventListener('submit', handleFormSubmission);
-
-var handleFormSubmission = function(event){
+var handleFormSubmission = function (event) {
   //prevents page reload on submission
   event.preventDefault();
+
   //prevent empty fields
   if (!event.target.name.value || !event.target.minHourlyCustomers.value || !event.target.maxHourlyCustomers.value || !event.target.avgCookiesPerPerson.value) {
     return alert('Fields cannot be empty');
   }
+
   //populate the new stores with our variables
   var location = event.target.name.value;
-  var min = event.target.minHourlyCustomers.value;
-  var max = event.target.maxHourlyCustomers.value;
-  var avgCookies = event.target.avgCookiesPerPerson.value;
+  var min = Number(event.target.minHourlyCustomers.value);
+  var max = Number(event.target.maxHourlyCustomers.value);
+  var avgCookies = Number(event.target.avgCookiesPerPerson.value);
+
+  //prevent strings in number fields
+  if (isNaN(avgCookies)){
+    return alert ('Please enter a number in the form field');
+  }
 
   //This is creating a new store instance
   var newStoreLocation = new Store(location, min, max, avgCookies);
@@ -147,6 +191,7 @@ var handleFormSubmission = function(event){
   renderAllStores();
 
   //need to call footer here when I make it
+  makeFooterRow();
 }
 
 //Event listener for new location. This attaches it to my submission form
