@@ -7,7 +7,7 @@ body {
 
 h1{
     margin-bottom: 25px;
-    margin-top: 20px;
+    margin-top: 30px;
     font-size: 40px;
     font-weight: bold;
     text-align: center;
@@ -27,6 +27,7 @@ table, th, td {
 
 table {
     width: 90%;
+    margin-left: 20px;
 }
 
 fieldset {
@@ -49,49 +50,25 @@ button {
 }
 
 legend {
-    text-align: left;
+    text-align: center;
     font-weight: bold;
     margin-left: 30px;
     font-size: 18px;
 }
 
-div {
+#hours {
+    display: block;
+}
+
+#locations {
+    display: block;
     margin-left: auto;
     margin-right: auto;
-    max-width: 100%;
-    min-width: 800px;
+    width: 850px;
 }
 
-ul {
-    display: inline-block;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-li {
-    padding: 10px;
-
-}
-
-h2 {
-    text-align: center;
-    margin: 20px;
-    font-style: italic;
-    
-}
-
-h3 {
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-size: 20px;
-    font-weight: bold;
-
-}
-
-img {
-    max-width: 50%;
+#salmon {
+    width: 60%;
     display: block;
     margin-left: auto;
     margin-right:auto;
@@ -99,8 +76,35 @@ img {
     margin-bottom: 20px;
 }
 
+ul {
+    text-align: center;
+}
+
+li {
+    padding: 10px;
+}
+
+h2 {
+    text-align: center;
+    margin: 40px;
+    font-style: italic; 
+}
+
+h3 {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+}
+
 p {
     text-align: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+
 }
 
 a {
@@ -108,30 +112,37 @@ a {
 }
 
 a:hover {
-    color: rgb(182, 88, 65)
+    color: rgb(182, 88, 65);
 }
 
-#cutter {
-    float: left;
-    max-width: 100px;
+img {
+    width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-#cookie {
-    float: left;
-    max-width: 100px;
+div {
+    display: inline-block;
 }
 
-#family {
-    float: right;
-    max-width: 100px;
+.topnav {
+    background-color: rgb(51, 58, 45);
+    width: 100%;
+    height: 25px;
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 18px;
+    text-align: center;
 }
 
-#chinook {
-    float: right;
-    max-width: 100px;
+.topnav a {
+    color: rgb(197, 190, 116);
+    padding: 10px;
+    text-decoration: none;
 }
 
-#our-cookies {
-    height: 600px;
-    margin-bottom: 300px;
+.topnav a:hover {
+    color: rgb(182, 88, 65);
 }
